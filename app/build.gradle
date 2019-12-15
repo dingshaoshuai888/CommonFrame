@@ -10,25 +10,32 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     //retrofit网络请求框架
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofitGson"]
+    implementation rootProject.ext.dependencies["retrofit2Rxjava2Adapter"]
+    implementation rootProject.ext.dependencies["rxlifecycleComponents"]
+
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor  rootProject.ext.dependencies["glideCompiler"]
 
     //注解框架
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+    implementation rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknifeCompiler"]
+
+    //EventBus
+    implementation rootProject.ext.dependencies["eventbus"]
+
 }
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
         applicationId "com.retrofit.demo"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -43,4 +50,3 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
-

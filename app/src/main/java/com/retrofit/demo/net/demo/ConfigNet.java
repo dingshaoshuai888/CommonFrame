@@ -1,4 +1,4 @@
-package com.retrofit.demo.config;
+package com.retrofit.demo.net.demo;
 
 public interface ConfigNet {
 

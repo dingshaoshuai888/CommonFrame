@@ -1,8 +1,7 @@
-package com.retrofit.demo;
+package com.retrofit.demo.net.demo;
 
-import com.retrofit.demo.bean.Bean;
-import com.retrofit.demo.bean.Demo;
-import com.retrofit.demo.config.ConfigNet;
+import com.retrofit.demo.net.bean.Bean;
+import com.retrofit.demo.net.bean.Demo;
 import com.retrofit.demo.net.BaseResponse;
 
 import java.util.List;

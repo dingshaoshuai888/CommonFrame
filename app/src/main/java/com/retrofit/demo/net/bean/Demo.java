@@ -1,4 +1,4 @@
-package com.retrofit.demo.bean;
+package com.retrofit.demo.net.bean;
 
 /**
  * http://pndatsn5v.bkt.clouddn.com/rxjava_retrofit.txt

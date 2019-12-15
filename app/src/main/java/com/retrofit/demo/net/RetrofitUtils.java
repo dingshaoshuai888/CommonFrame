@@ -2,8 +2,8 @@ package com.retrofit.demo.net;
 
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.retrofit.demo.ApiUrl;
-import com.retrofit.demo.config.ConfigNet;
+import com.retrofit.demo.net.demo.ApiUrl;
+import com.retrofit.demo.net.demo.ConfigNet;
 
 import java.util.concurrent.TimeUnit;
 

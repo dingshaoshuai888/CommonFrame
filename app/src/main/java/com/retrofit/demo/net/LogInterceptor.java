@@ -1,8 +1,6 @@
 package com.retrofit.demo.net;
 
-import android.util.Log;
-
-import com.retrofit.demo.config.TAG;
+import com.retrofit.demo.config.LogTag;
 import com.retrofit.demo.util.MLog;
 
 import java.io.IOException;
@@ -25,10 +23,10 @@ public class LogInterceptor implements Interceptor {
         okhttp3.MediaType mediaType = response.body().contentType();
         String content = response.body().string();
         //Log打印
-        MLog.i(TAG.OKHTTP, "request:" + request.toString());
-        MLog.i(TAG.OKHTTP, String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
+        MLog.i(LogTag.OKHTTP, "request:" + request.toString());
+        MLog.i(LogTag.OKHTTP, String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
                 response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-        MLog.i(TAG.OKHTTP, "response body:" + content);
+        MLog.i(LogTag.OKHTTP, "response body:" + content);
         return response.newBuilder()
                 .body(okhttp3.ResponseBody.create(mediaType, content))
                 .build();

@@ -1,7 +1,7 @@
 package com.retrofit.demo.config;
 
-public interface TAG {
+public interface LogTag {
 
+    String TEST = "dss_test";
     String OKHTTP = "okhttp";
-
 }
