@@ -24,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentViewBefore();
         setContentView(getLayoutId());
-        initButterKnife();
+        bindButterKnife();
         initView();
         initClick();
         initData();
@@ -100,7 +100,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return false;
     }
 
-    private void initButterKnife() {
+    private void bindButterKnife() {
         ButterKnife.bind(this);
     }
 

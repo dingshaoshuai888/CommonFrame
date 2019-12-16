@@ -17,6 +17,7 @@ import com.retrofit.demo.base.BaseActivity;
 import com.retrofit.demo.config.ConfigEvent;
 import com.retrofit.demo.help.eventbus.Event;
 import com.retrofit.demo.help.eventbus.EventBusHelp;
+import com.retrofit.demo.help.image.ImageHelp;
 import com.retrofit.demo.util.MLog;
 
 import androidx.annotation.Nullable;
@@ -31,33 +32,30 @@ public class MainActivity extends BaseActivity {
     TextView tv2;
     @BindString(R.string.app_name)
     String appName;
-    @BindView(R.id.iv)
-    ImageView iv;
+    @BindView(R.id.iv1)
+    ImageView iv1;
+    @BindView(R.id.iv2)
+    ImageView iv2;
+    @BindView(R.id.iv3)
+    ImageView iv3;
+    @BindView(R.id.iv4)
+    ImageView iv4;
+
+    private String url = "http://file02.16sucai.com/d/file/2014/0704/e53c868ee9e8e7b28c424b56afe2066d.jpg";
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3})
     void btnClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                Glide.with(this).load("http://file02.16sucai.com/d/file/2014/0704/e53c868ee9e8e7b28c424b56afe2066d.jpg")
-                        .listener(new RequestListener<Drawable>() {
-                            @Override
-                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                                MLog.i("test",e.getMessage());
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                return false;
-                            }
-                        })
-                        .into(iv);
-//                EventBusHelp.post(new Event(ConfigEvent.CODE_TEST_Main, "这是MainActivity发的普通事件"));
+                ImageHelp.load(this, iv1, url);
+                ImageHelp.loadCircle(this, iv2, url);
+                ImageHelp.loadRound(this, iv3, url, 30);
+                ImageHelp.load(this, iv4, R.mipmap.ic_launcher);
                 break;
             case R.id.btn2:
                 EventBusHelp.postSticky(new Event(ConfigEvent.CODE_TEST_Main, "这是MainActivity发的粘性事件"));

@@ -14,8 +14,11 @@ import org.greenrobot.eventbus.ThreadMode;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +31,9 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutId(), container, false);
+        View view = inflater.inflate(getLayoutId(), container, false);
+        unbinder = bindButterKnife(this, view);
+        return view;
     }
 
     @Override
@@ -43,6 +48,7 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         unregisterEventBus();
+        unbindButterKnife();
     }
 
     protected void initView(View rootView) {
@@ -107,4 +113,15 @@ public abstract class BaseFragment extends Fragment {
     protected boolean isRegisterEventBus() {
         return false;
     }
+
+    private Unbinder bindButterKnife(Object target, View source) {
+        return ButterKnife.bind(target, source);
+    }
+
+    private void unbindButterKnife() {
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
+    }
+
 }
