@@ -21,9 +21,8 @@ public class MLog {
 
     private static String createLog(String log) {
         StringBuffer buffer = new StringBuffer();
-        buffer.append("===");
         buffer.append(methodName);
-        buffer.append("(").append(className).append(":").append(lineNumber).append(")===:");
+        buffer.append("(").append(className).append(":").append(lineNumber).append("):\n");
         buffer.append(log);
         return buffer.toString();
     }

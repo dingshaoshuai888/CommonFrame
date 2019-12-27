@@ -1,16 +1,9 @@
 package com.retrofit.demo;
 
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.retrofit.demo.activity.TestActivity1;
 import com.retrofit.demo.app.JumpHelp;
 import com.retrofit.demo.base.BaseActivity;
@@ -18,9 +11,8 @@ import com.retrofit.demo.config.ConfigEvent;
 import com.retrofit.demo.help.eventbus.Event;
 import com.retrofit.demo.help.eventbus.EventBusHelp;
 import com.retrofit.demo.help.image.ImageHelp;
-import com.retrofit.demo.util.MLog;
+import com.retrofit.demo.kotlin.TestActivity4;
 
-import androidx.annotation.Nullable;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -74,5 +66,9 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.btn2)
     void setTv2() {
         tv2.setText(appName);
+    }
+    @OnClick(R.id.btn4)
+    void jumpKotlinActivity(){
+        JumpHelp.startActivity(this, TestActivity4.class);
     }
 }

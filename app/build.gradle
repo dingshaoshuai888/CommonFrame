@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 
 dependencies {
@@ -16,7 +18,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rxlifecycleComponents"]
 
     implementation rootProject.ext.dependencies["glide"]
-    annotationProcessor  rootProject.ext.dependencies["glideCompiler"]
+    annotationProcessor rootProject.ext.dependencies["glideCompiler"]
 
     //注解框架
     implementation rootProject.ext.dependencies["butterknife"]
@@ -25,6 +27,8 @@ dependencies {
     //EventBus
     implementation rootProject.ext.dependencies["eventbus"]
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
 }
 
 
