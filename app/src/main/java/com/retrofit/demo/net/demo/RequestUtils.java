@@ -2,7 +2,7 @@ package com.retrofit.demo.net.demo;
 
 import com.retrofit.demo.net.bean.Demo;
 import com.retrofit.demo.net.LoadingObserver;
-import com.retrofit.demo.net.RetrofitUtils;
+import com.retrofit.demo.net.RetrofitHelp;
 import com.retrofit.demo.net.RxHelper;
 import com.trello.rxlifecycle2.components.RxActivity;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -29,7 +29,7 @@ public class RequestUtils {
      * @param observer
      */
     public static void getDemo(RxActivity context, LoadingObserver<Demo> observer){
-        RetrofitUtils.getApiUrl().getDemo()
+        RetrofitHelp.create(ApiUrl.class).getDemo()
                 .compose(RxHelper.observableIO2Main(context))
                 .subscribe(observer);
     }
@@ -40,7 +40,7 @@ public class RequestUtils {
      * @param observer
      */
     public static void getDemoList(RxActivity context, LoadingObserver<List<Demo>> observer){
-        RetrofitUtils.getApiUrl()
+        RetrofitHelp.create(ApiUrl.class)
                 .getDemoList().compose(RxHelper.observableIO2Main(context))
                 .subscribe(observer);
     }
@@ -50,7 +50,7 @@ public class RequestUtils {
      * @param consumer
      */
     public static void postDemo(RxAppCompatActivity context, String name, String password, Observer<Demo> consumer){
-        RetrofitUtils.getApiUrl()
+        RetrofitHelp.create(ApiUrl.class)
                 .postUser(name,password).compose(RxHelper.observableIO2Main(context))
                 .subscribe(consumer);
     }
@@ -63,7 +63,7 @@ public class RequestUtils {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Accept","application/json");
         headers.put("Authorization",access_token);
-        RetrofitUtils.getApiUrl()
+        RetrofitHelp.create(ApiUrl.class)
                 .put(headers,"厦门").compose(RxHelper.observableIO2Main(context))
                 .subscribe(consumer);
     }
@@ -73,7 +73,7 @@ public class RequestUtils {
      * @param consumer
      */
     public static void deleteDemo(RxFragment context, String access_token,Observer<Demo> consumer){
-        RetrofitUtils.getApiUrl()
+        RetrofitHelp.create(ApiUrl.class)
                 .delete(access_token,1).compose(RxHelper.observableIO2Main(context))
                 .subscribe(consumer);
     }
@@ -95,7 +95,7 @@ public class RequestUtils {
 //                RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("file", file.getName(), reqFile);
-        RetrofitUtils.getApiUrl().uploadImage(header,body).compose(RxHelper.observableIO2Main(context))
+        RetrofitHelp.create(ApiUrl.class).uploadImage(header,body).compose(RxHelper.observableIO2Main(context))
                 .subscribe(observer);
     }
 
@@ -115,7 +115,7 @@ public class RequestUtils {
             builder.addFormDataPart("file", file.getName(), photoRequestBody);
         }
         List<MultipartBody.Part> parts = builder.build().parts();
-        RetrofitUtils.getApiUrl().uploadImage1(header,parts).compose(RxHelper.observableIO2Main(context))
+        RetrofitHelp.create(ApiUrl.class).uploadImage1(header,parts).compose(RxHelper.observableIO2Main(context))
                 .subscribe(observer1);
     }
 }

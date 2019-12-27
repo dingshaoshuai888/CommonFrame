@@ -11,7 +11,6 @@ import com.retrofit.demo.config.ConfigEvent;
 import com.retrofit.demo.help.eventbus.Event;
 import com.retrofit.demo.help.eventbus.EventBusHelp;
 import com.retrofit.demo.help.image.ImageHelp;
-import com.retrofit.demo.kotlin.TestActivity4;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -69,6 +68,5 @@ public class MainActivity extends BaseActivity {
     }
     @OnClick(R.id.btn4)
     void jumpKotlinActivity(){
-        JumpHelp.startActivity(this, TestActivity4.class);
     }
 }
