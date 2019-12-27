@@ -18,6 +18,12 @@ import com.retrofit.demo.help.JsonHelp;
 import com.retrofit.demo.help.eventbus.Event;
 import com.retrofit.demo.help.eventbus.EventBusHelp;
 import com.retrofit.demo.help.image.ImageHelp;
+import com.retrofit.demo.net.LoadingObserver;
+import com.retrofit.demo.net.RetrofitHelp;
+import com.retrofit.demo.net.RxHelper;
+import com.retrofit.demo.net.bean.Demo;
+import com.retrofit.demo.net.demo.ApiUrl;
+import com.retrofit.demo.net.demo.RequestUtils;
 import com.retrofit.demo.util.MLog;
 import com.retrofit.demo.util.MToast;
 
@@ -137,7 +143,21 @@ public class TestActivity2 extends BaseActivity {
                 EventBusHelp.postSticky(new Event(ConfigEvent.CODE_TEST_2, "这是TestActivity2发的粘性事件"));
                 break;
             case R.id.btn3:
-                JumpHelp.startActivity(this, TestActivity3.class);
+//                JumpHelp.startActivity(this, TestActivity3.class);
+                RetrofitHelp.create(ApiUrl.class).getDemo("3.3.5","1.68","0","1.68","1")
+                        .compose(RxHelper.observableIO2Main(this))
+                        .subscribe(new LoadingObserver<Demo>(this){
+
+                            @Override
+                            public void onSuccess(Demo result) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Throwable e, String errorMsg) {
+
+                            }
+                        });
                 break;
         }
     }

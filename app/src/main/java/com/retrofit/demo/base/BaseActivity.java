@@ -4,15 +4,15 @@ import android.os.Bundle;
 
 import com.retrofit.demo.help.eventbus.Event;
 import com.retrofit.demo.help.eventbus.EventBusHelp;
+import com.trello.rxlifecycle2.components.RxActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends RxActivity {
 
     protected void setContentViewBefore() {
     }

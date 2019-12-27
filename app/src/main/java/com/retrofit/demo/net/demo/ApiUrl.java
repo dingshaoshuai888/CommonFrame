@@ -39,8 +39,9 @@ public interface ApiUrl {
     @GET(ConfigNet.retrofit)
     Call<Bean> getRetrofit();
 
-    @GET(ConfigNet.retrofit)
-    Observable<BaseResponse<Demo>> getDemo();
+    @GET("seekFunBookCommon/cmm/startUp.json")
+    Observable<BaseResponse<Demo>> getDemo(@Query("appVer") String appVer, @Query("cacheVer") String cacheVer
+            , @Query("webResVer") String webResVer, @Query("parsVer") String parsVer,@Query("platform")String platform);
 
     @GET(ConfigNet.retrofitList)
     Observable<BaseResponse<List<Demo>>> getDemoList();
@@ -52,16 +53,21 @@ public interface ApiUrl {
     //第一种方式：GET不带参数
     @GET("retrofit.txt")
     Observable<BaseResponse<Demo>> getUser();
+
     @GET
     Observable<Demo> getUser(@Url String url);
+
     @GET
     Observable<Demo> getUser1(@Url String url); //简洁方式   直接获取所需数据
+
     //第二种方式：GET带参数
     @GET("api/data/{type}/{count}/{page}")
     Observable<Demo> getUser(@Path("type") String type, @Path("count") int count, @Path("page") int page);
+
     //第三种方式：GET带请求参数：https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy
     @GET("users/whatever")
     Observable<Demo> getUser(@Query("client_id") String id, @Query("client_secret") String secret);
+
     @GET("users/whatever")
     Observable<Demo> getUser(@QueryMap Map<String, String> info);
 
@@ -78,6 +84,7 @@ public interface ApiUrl {
     @POST("auth/login")
     @FormUrlEncoded
     Observable<Demo> postUser(@Field("username") String username, @Field("password") String password);
+
     //多个参数
     Observable<Demo> postUser(@FieldMap Map<String, String> map);
 
@@ -120,6 +127,7 @@ public interface ApiUrl {
 
     /**
      * 来自https://blog.csdn.net/impure/article/details/79658098
+     *
      * @Streaming 这个注解必须添加，否则文件全部写入内存，文件过大会造成内存溢出
      */
     @Streaming

@@ -3,6 +3,6 @@ package com.retrofit.demo.config;
 public interface LogTag {
 
     String TEST = "dss_test";
-    String OKHTTP = "okhttp";
-    String ERROR = "error";
+    String OKHTTP = "dss_okhttp";
+    String ERROR = "dss_error";
 }

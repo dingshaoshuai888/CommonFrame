@@ -29,9 +29,9 @@ public class RequestUtils {
      * @param observer
      */
     public static void getDemo(RxActivity context, LoadingObserver<Demo> observer){
-        RetrofitHelp.create(ApiUrl.class).getDemo()
-                .compose(RxHelper.observableIO2Main(context))
-                .subscribe(observer);
+//        RetrofitHelp.create(ApiUrl.class).getDemo()
+//                .compose(RxHelper.observableIO2Main(context))
+//                .subscribe(observer);
     }
 
     /**
