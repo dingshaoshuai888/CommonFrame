@@ -1,7 +1,11 @@
 package com.retrofit.demo.base;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.retrofit.demo.R;
 import com.retrofit.demo.help.eventbus.Event;
 import com.retrofit.demo.help.eventbus.EventBusHelp;
 import com.trello.rxlifecycle2.components.RxActivity;
@@ -23,12 +27,27 @@ public abstract class BaseActivity extends RxActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentViewBefore();
+        super.setContentView(R.layout.activity_base_view);
         setContentView(getLayoutId());
         bindButterKnife();
         initView();
         initClick();
         initData();
         registerEventBus();
+    }
+
+    @Override
+    public void setContentView(int layoutId) {
+        setContentView(View.inflate(this, layoutId, null));
+    }
+
+    @Override
+    public void setContentView(View view) {
+        LinearLayout rootLayout = findViewById(R.id.root_layout);
+        if (rootLayout == null) {
+            return;
+        }
+        rootLayout.addView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
     @Override

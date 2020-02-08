@@ -32,6 +32,9 @@ public class TestActivity1 extends BaseActivity {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    private CommonAdapter<String> commonAdapter;
+    private List<String> data;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_test1;
@@ -40,11 +43,11 @@ public class TestActivity1 extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        data = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
             data.add("条目 " + i);
         }
-        CommonAdapter<String> commonAdapter = new CommonAdapter<String>(this, R.layout.item_test, data) {
+         commonAdapter = new CommonAdapter<String>(this, R.layout.item_test, data) {
 
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
@@ -74,7 +77,11 @@ public class TestActivity1 extends BaseActivity {
     public void send(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                EventBusHelp.post(new Event(ConfigEvent.CODE_TEST_1, "这是TestActivity1发的普通事件"));
+                ArrayList<String> str = new ArrayList<>();
+                str.add("哈哈");
+                data.addAll(str);
+                commonAdapter.notifyDataSetChanged();
+//                EventBusHelp.post(new Event(ConfigEvent.CODE_TEST_1, "这是TestActivity1发的普通事件"));
                 break;
             case R.id.btn2:
                 EventBusHelp.postSticky(new Event(ConfigEvent.CODE_TEST_1, "这是TestActivity1发的粘性事件"));

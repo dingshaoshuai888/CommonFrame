@@ -43,6 +43,9 @@ public interface ApiUrl {
     Observable<BaseResponse<Demo>> getDemo(@Query("appVer") String appVer, @Query("cacheVer") String cacheVer
             , @Query("webResVer") String webResVer, @Query("parsVer") String parsVer,@Query("platform")String platform);
 
+    @GET("seekFunBookCommon/cmm/startUp.json")
+    Observable<BaseResponse<Demo>> getDemo(@QueryMap Map<String,String> map);
+
     @GET(ConfigNet.retrofitList)
     Observable<BaseResponse<List<Demo>>> getDemoList();
 

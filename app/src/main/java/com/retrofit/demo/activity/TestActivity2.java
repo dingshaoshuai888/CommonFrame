@@ -28,7 +28,9 @@ import com.retrofit.demo.util.MLog;
 import com.retrofit.demo.util.MToast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -144,7 +146,31 @@ public class TestActivity2 extends BaseActivity {
                 break;
             case R.id.btn3:
 //                JumpHelp.startActivity(this, TestActivity3.class);
-                RetrofitHelp.create(ApiUrl.class).getDemo("3.3.5","1.68","0","1.68","1")
+//                RetrofitHelp.create(ApiUrl.class).getDemo("3.3.5","1.68","0","1.68","1")
+//                        .compose(RxHelper.observableIO2Main(this))
+//                        .subscribe(new LoadingObserver<Demo>(this){
+//
+//                            @Override
+//                            public void onSuccess(Demo result) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Throwable e, String errorMsg) {
+//
+//                            }
+//                        });
+                Map<String,String> map = new HashMap<>();
+                /**
+                 * @Query("appVer") String appVer, @Query("cacheVer") String cacheVer
+                 * @Query("webResVer") String webResVer, @Query("parsVer") String parsVer,@Query("platform")String platform)
+                 */
+                map.put("appVer","3.3.5");
+                map.put("cacheVer","1.68");
+                map.put("webResVer","0");
+                map.put("parsVer","1.68");
+                map.put("platform","1");
+                RetrofitHelp.create(ApiUrl.class).getDemo(map)
                         .compose(RxHelper.observableIO2Main(this))
                         .subscribe(new LoadingObserver<Demo>(this){
 
